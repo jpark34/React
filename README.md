@@ -1,4 +1,4 @@
-# React
+# React Projects
 Various projects to learn how to use React to build user interfaces and web applications.
 
 # tic-tac-toe
