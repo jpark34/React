@@ -4,17 +4,29 @@ import './index.css';
 
 // each square is a controlled component as the board class contains
 // the states and values for each one and has full control over them
-class Square extends React.Component {
-    render() {
-        return (
-            <button 
-                className="square"
-                onClick={() => this.props.onClick()}
-            >
-                {this.props.value}
-            </button>
-        );
-    }
+// class Square extends React.Component {
+//     render() {
+//         return (
+//             <button 
+//                 className="square"
+//                 onClick={() => this.props.onClick()}
+//             >
+//                 {this.props.value}
+//             </button>
+//         );
+//     }
+// }
+
+// both the square class and function do the same thing. By convention,
+// if a method is only used to render something and does not contain its
+// own state it is better to turn it into a function component instead of
+// defining a class that extends another class
+function Square(props) {
+    return (
+        <button className="square" onClick={props.onClick}>
+            {props.value}
+        </button>
+    );
 }
 
 // extends allows for the class to inherit methods from another class
