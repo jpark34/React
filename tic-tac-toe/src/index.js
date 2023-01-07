@@ -31,60 +31,19 @@ function Square(props) {
 
 // extends allows for the class to inherit methods from another class
 class Board extends React.Component {
-    // constructor allows you to create an instance of the object
-    constructor(props) {
-        // super allows children methods to gain access
-        // to their parent's properties and methods
-        super(props);
-        this.state = {
-            squares: Array(9).fill(null),
-            xIsNext: true,
-        };
-    }
-
-    // convention to use handle[Event] for methods that handle events
-    handleClick(i) {
-        // slice creates a copy of the squares array so that
-        // we are not modifying the existing array. This allows for immutability and
-        // allows for us to have a pure component, where we can easily determine if
-        // a change has been made to the object
-        const squares = this.state.squares.slice();
-
-        if (calculateWinner(squares) || squares[i]) {
-            return;
-        }
-
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext,
-        });
-    }
-
     renderSquare(i) {
         return (
             <Square 
-                value={this.state.squares[i]}
+                value={this.props.squares[i]}
                 // convention to use on[Event] names for props that represent events
-                onClick={() => this.handleClick(i)}
+                onClick={() => this.props.handleClick(i)}
             />
         );
     }
   
     render() {
-        const winner = calculateWinner(this.state.squares);
-        let status;
-        if (winner) {
-            status = 'Winner: ' + winner;
-        } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
-  
         return (
             <div>
-                <div className="status">
-                    {status}
-                </div>
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
@@ -106,15 +65,65 @@ class Board extends React.Component {
 }
   
 class Game extends React.Component {
+    // constructor allows you to create an instance of the object
+    constructor(props) {
+        // super allows children methods to gain access
+        // to their parent's properties and methods
+        super(props);
+        this.state = {
+            history: [{
+                squares: Array(9).fill(null),
+            }],
+            xIsNext: true,
+        };
+    }
+
+    // convention to use handle[Event] for methods that handle events
+    handleClick(i) {
+        // slice creates a copy of the squares array so that
+        // we are not modifying the existing array. This allows for immutability and
+        // allows for us to have a pure component, where we can easily determine if
+        // a change has been made to the object
+        const history = this.state.history;
+        const current = history[history.length - 1];
+        const squares = current.squares.slice();
+
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+        }
+
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            history: history.concat([{
+                squares: squares,
+            }]),
+            xIsNext: !this.state.xIsNext,
+        });
+    }
+
     render() {
+        const history = this.state.history;
+        const current = history[history.lwngth - 1];
+        const winner = calculateWinner(current.squares);
+        let status;
+
+        if (winner) {
+            status = 'Winner: ' + winner;
+        } else {
+            status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+
         return (
             <div className="game">
                 <div className="game-board">
-                    <Board />
+                    <Board
+                        squares={current.squares}
+                        onClick={(i) => this.handleClick(i)}
+                    />
                 </div>
                 <div className="game-info">
                     <div>
-                        {/* status */}
+                        {status}
                     </div>
                     <ol>{/* TODO */}</ol>
                 </div>
