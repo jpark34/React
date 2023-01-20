@@ -1,29 +1,34 @@
 import React, { Component } from 'react'
 import Table from './Table'
+import Form from './Form'
 
 // creates the app component
 // each component should get their own file
 class App extends Component {
     // create a state object to allow 2 way data flow
     state = {
-        characters: [
-            {
-                name: 'Charlie',
-                job: 'Janitor',
-            },
-            {
-                name: 'Mac',
-                job: 'Bouncer',
-            },
-            {
-                name: 'Dee',
-                job: 'Aspiring Actress',
-            },
-            {
-                name: 'Dennis',
-                job: 'Bartender',
-            },
-        ],
+        // empty array to send to table for form submission
+        characters: [],
+
+        // hard coded json like string of values
+        // characters: [
+        //     {
+        //         name: 'Charlie',
+        //         job: 'Janitor',
+        //     },
+        //     {
+        //         name: 'Mac',
+        //         job: 'Bouncer',
+        //     },
+        //     {
+        //         name: 'Dee',
+        //         job: 'Aspiring Actress',
+        //     },
+        //     {
+        //         name: 'Dennis',
+        //         job: 'Bartender',
+        //     },
+        // ],
     }
 
     // pass the state and removeCharacter function to the table class
@@ -33,10 +38,17 @@ class App extends Component {
         return (
             <div className='container'>
                 <Table characterData={characters} removeCharacter={this.removeCharacter} />
+                <Form handleSubmit={this.handleSubmit} />
             </div>
         )
     }
 
+    // update the state of the table when called
+    handleSubmit = (character) => {
+        this.setState({ characters: [...this.state.characters, character] })
+    }
+
+    // remove a value from the json string
     removeCharacter = (index) => {
         const { characters } = this.state
     
@@ -44,7 +56,7 @@ class App extends Component {
             characters: characters.filter((character, i) => {
                 return i !== index
             })
-        })
+        });
     }
 
     // render() {

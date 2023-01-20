@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+// import React, { Component } from "react"
+import React from 'react'
 
 // custom class component
 // capitalize these in order to differentiate them
@@ -17,6 +18,8 @@ import React, { Component } from "react"
 //     }
 // }
 
+// added ability to affect state and data from props
+// create a table element to display the data
 const Table = (props) => {
     const { characterData, removeCharacter } = props
 
@@ -28,8 +31,8 @@ const Table = (props) => {
     )
 }
 
-// simple component
-// just a function that doesn't use the class keyword
+// simple component -> just a function that doesn't use the class keyword
+// create the header for the table
 const TableHeader = () => {
     return (
         <thead>
@@ -41,6 +44,7 @@ const TableHeader = () => {
     )
 }
 
+// create the body for the table
 const TableBody = (props) => {
     const rows = props.characterData.map((row, index) => {
         return (
