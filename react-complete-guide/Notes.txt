@@ -1,0 +1,21 @@
+Section 3: React Essentials - Components, JSX, Props, State & More
+    - Components
+        - UI building blocks
+        - Reusability - allows for updating one piece instead of many pieces
+        - Related Code Lives Together - less files open at once
+        - Separation of Concerns - keeps components separated
+    - npm
+        - npm install
+            - install third party packages needed for the project
+        - npm run dev
+            - runs the local server for development
+    - JSX
+        - Used to describe and create HTML elements in JavaScript
+    - Component Functions in JSX
+        - Must follow 2 rules
+            - Function name starts with an uppercase character
+            - Function must return a value that can be rendered
+    - Props
+        - Way to pass data to a components
+        - Pass an object to a react component as an object
+            - Can access the props by key / value pairs
