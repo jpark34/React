@@ -19,3 +19,7 @@ Section 3: React Essentials - Components, JSX, Props, State & More
         - Way to pass data to a components
         - Pass an object to a react component as an object
             - Can access the props by key / value pairs
+        props.children
+            - prop that is always given by react
+            - refers to the content that is given between the component tags
+            
