@@ -22,4 +22,9 @@ Section 3: React Essentials - Components, JSX, Props, State & More
         props.children
             - prop that is always given by react
             - refers to the content that is given between the component tags
-            
+        - can add event handler props to components and elements
+            - add event handler functions inside of the component function so that you have
+              access to the component's state and props
+        Sending Functions as Values to Props
+            - send a function as a prop so that you can view and use data that is available
+              outside of the component that is being interacted with
