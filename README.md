@@ -10,3 +10,5 @@ Simple site to practice using the inspect option on a webpage to manipulate thin
 # react-tutorial
 Tutorial on some of the basics of using react. This tutorial can be found on this website. https://www.taniarascia.com/getting-started-with-react/
 
+# react-complete-guide
+Projects and learning material from "React - The Complete Guide 2024 (incl. React Router & Redux)" Udemy course.
